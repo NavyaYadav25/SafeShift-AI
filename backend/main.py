@@ -9,6 +9,7 @@ from models import Incident
 
 from schemas import IncidentCreate
 from investigator import investigate_incident
+from parser import parse_stack_trace
 
 app = FastAPI(title="SafeShift AI")
 
@@ -32,14 +33,20 @@ def create_incident(data: IncidentCreate):
         data.stack_trace
     )
 
+    parsed = parse_stack_trace(
+    data.stack_trace
+  )
+
     incident = Incident(
-        service=data.service,
-        severity=data.severity,
-        exception=data.exception,
-        endpoint=data.endpoint,
-        stack_trace=data.stack_trace,
-        root_cause=analysis["root_cause"]
-    )
+    service=data.service,
+    severity=data.severity,
+    exception=data.exception,
+    endpoint=data.endpoint,
+    stack_trace=data.stack_trace,
+    file_name=parsed["file_name"],
+    line_number=parsed["line_number"],
+    root_cause=analysis["root_cause"]
+  )
 
     db.add(incident)
     db.commit()
