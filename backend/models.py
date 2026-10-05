@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String
 from database import Base
+
 
 class Incident(Base):
     __tablename__ = "incidents"
@@ -9,15 +10,13 @@ class Incident(Base):
     service = Column(String)
     severity = Column(String)
     exception = Column(String)
-
     endpoint = Column(String)
-
-    stack_trace = Column(Text)
-
-    file_name = Column(String, nullable=True)
-
-    line_number = Column(Integer, nullable=True)
-
-    root_cause = Column(Text, nullable=True)
+    stack_trace = Column(String)
 
     status = Column(String, default="OPEN")
+
+    root_cause = Column(String)
+
+    severity_score = Column(Integer)
+
+    fix_suggestion = Column(String)
