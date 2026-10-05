@@ -382,4 +382,5 @@ def get_metrics():
             total_incidents
         )
 
-    
+    finally:
+        db.close()
