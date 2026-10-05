@@ -23,17 +23,17 @@ function App() {
       .catch((error) => console.error(error));
 
     axios
-      .get("http://127.0.0.1:8000/agents")
+      .get("https://safeshift-ai-tmrz.onrender.com")
       .then((response) => setAgents(response.data))
       .catch((error) => console.error(error));
 
     axios
-      .get("http://127.0.0.1:8000/metrics")
+      .get("https://safeshift-ai-tmrz.onrender.com")
       .then((response) => setMetrics(response.data))
       .catch((error) => console.error(error));
 
     axios
-      .get("http://127.0.0.1:8000/timeline")
+      .get("https://safeshift-ai-tmrz.onrender.com")
       .then((response) => {
         const sortedTimeline = [...response.data].reverse();
         setTimeline(sortedTimeline);
@@ -56,7 +56,7 @@ function App() {
   const approveIncident = async (incidentId) => {
     try {
       await axios.put(
-        `http://127.0.0.1:8000/incident/${incidentId}/approve`
+        `https://safeshift-ai-tmrz.onrender.com/${incidentId}/approve`
       );
 
       loadData();
@@ -68,7 +68,7 @@ function App() {
   const generateDemoIncident = async () => {
     try {
       await axios.post(
-        "http://127.0.0.1:8000/generate-demo-incident"
+        "https://safeshift-ai-tmrz.onrender.com"
       );
 
       loadData();
