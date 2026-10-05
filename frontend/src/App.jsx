@@ -15,21 +15,21 @@ function App() {
   });
 
   const loadData = () => {
-    axios.get("https://safeshift-ai-tmrz.onrender.com/incidents")
+    axios.get("https://safeshift-ai-backend-olf7.onrender.com/incidents")
       .then((response) => {
         const sorted = [...response.data].reverse();
         setIncidents(sorted);
       })
       .catch((error) => console.error(error));
 
-    axios.get("https://safeshift-ai-tmrz.onrender.com/agents")
+    axios.get("https://safeshift-ai-backend-olf7.onrender.com/agents")
       .then((response) => setAgents(response.data))
       .catch((error) => console.error(error));
-    axios.get("https://safeshift-ai-tmrz.onrender.com/metrics")
+    axios.get("https://safeshift-ai-backend-olf7.onrender.com/metrics")
       .then((response) => setMetrics(response.data))
       .catch((error) => console.error(error));
 
-    axios.get("https://safeshift-ai-tmrz.onrender.com/timeline")
+    axios.get("https://safeshift-ai-backend-olf7.onrender.com/timeline")
       .then((response) => {
         const sortedTimeline = [...response.data].reverse();
         setTimeline(sortedTimeline);
@@ -52,8 +52,8 @@ function App() {
   const approveIncident = async (incidentId) => {
     try {
       await axios.put(
-       `https://safeshift-ai-tmrz.onrender.com/incident/${incidentId}/approve`
-      );
+  `https://safeshift-ai-backend-olf7.onrender.com/incident/${incidentId}/approve`
+);
 
       loadData();
     } catch (error) {
@@ -64,8 +64,8 @@ function App() {
   const generateDemoIncident = async () => {
     try {
       await axios.post(
-       "https://safeshift-ai-tmrz.onrender.com/generate-demo-incident"
-      );
+  "https://safeshift-ai-backend-olf7.onrender.com/generate-demo-incident"
+);
 
       loadData();
     } catch (error) {
