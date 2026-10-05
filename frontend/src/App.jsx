@@ -15,8 +15,7 @@ function App() {
   });
 
   const loadData = () => {
-    axios
-      .get("http://127.0.0.1:8000/incidents")
+    axios.get("https://safeshift-ai-tmrz.onrender.com/incidents")
       .then((response) => {
         const sorted = [...response.data].reverse();
         setIncidents(sorted);
